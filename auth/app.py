@@ -10,7 +10,7 @@ def auth():
     logging.info('/auth')
     return jsonify({'message': 'forbidden'}), 401
 
-@app.route('/login')
+@app.route('/auth/login')
 def login():
     logging.info('/login')
     return jsonify({'data': 'login'}), 200

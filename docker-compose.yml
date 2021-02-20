@@ -16,6 +16,9 @@ services:
   server:
     image: nginx:latest
     container_name: server
+    depends_on:
+      - app
+      - auth
     environment:
       - NGINX_PORT=80
     ports:
