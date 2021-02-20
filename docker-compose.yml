@@ -15,6 +15,7 @@ services:
     container_name: auth
     environment:
       - FLASK_ENV=development
+      - FLASK_SECRET_KEY=notsosecret
     volumes:
       - ./logs/auth:/srv/logs
       - ./auth:/usr/src/app
