@@ -1,17 +1,18 @@
-from flask import Flask, jsonify, render_template
+import logging
+from flask import Flask, render_template
+
+logging.basicConfig(filename='/srv/logs/access.log', level=logging.DEBUG)
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
+    logging.info('/home')
     return render_template('home.html')
-
-@app.route('/auth')
-def auth():
-    return jsonify({'data': 'success'}), 200
 
 @app.route('/reviews')
 def cirp_index():
+    logging.info('/reviews')
     return render_template('reviews.html')
 
 if '__main__' == __name__:

@@ -1,16 +1,25 @@
 version: '3.8'
 
 services:
-  nginx_auth_app:
-    build: python/  
-    container_name: nginx_auth_app
-    
-  nginx_auth_nginx:
+  app:
+    build: app/  
+    container_name: app
+    volumes:
+      - ./logs/app:/srv/logs
+
+  auth:
+    build: auth/  
+    container_name: auth
+    volumes:
+      - ./logs/auth:/srv/logs
+
+  server:
     image: nginx:latest
-    container_name: nginx_auth_nginx
+    container_name: server
     environment:
       - NGINX_PORT=80
     ports:
       - 80:80
     volumes:
-      - ./nginx/conf.d/:/etc/nginx/conf.d
+      - ./server/conf.d/:/etc/nginx/conf.d
+      - ./logs/server:/var/log/nginx
