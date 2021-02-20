@@ -8,12 +8,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    logging.info('serving `/home`')
     return render_template('home.html')
 
 @app.route('/reviews')
 def reviews():
-    logging.info('serving `/reviews`')
     return render_template('reviews.html')
 
 if '__main__' == __name__:
