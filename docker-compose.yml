@@ -2,16 +2,22 @@ version: '3.8'
 
 services:
   app:
-    build: app/  
+    build: app/
     container_name: app
+    environment:
+      - FLASK_ENV=development
     volumes:
       - ./logs/app:/srv/logs
+      - ./app:/usr/src/app
 
   auth:
-    build: auth/  
+    build: auth/
     container_name: auth
+    environment:
+      - FLASK_ENV=development
     volumes:
       - ./logs/auth:/srv/logs
+      - ./auth:/usr/src/app
 
   server:
     image: nginx:latest
