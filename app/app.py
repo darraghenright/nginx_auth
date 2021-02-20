@@ -1,18 +1,19 @@
 import logging
 from flask import Flask, render_template
 
-logging.basicConfig(filename='/srv/logs/access.log', level=logging.DEBUG)
+MSG_FORMAT = '%(asctime)s %(filename)s:%(lineno)d %(levelname)s %(message)s'
+logging.basicConfig(filename='/srv/logs/access.log', level=logging.DEBUG, format=MSG_FORMAT)
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    logging.info('/home')
+    logging.info('serving `/home`')
     return render_template('home.html')
 
 @app.route('/reviews')
-def cirp_index():
-    logging.info('/reviews')
+def reviews():
+    logging.info('serving `/reviews`')
     return render_template('reviews.html')
 
 if '__main__' == __name__:
