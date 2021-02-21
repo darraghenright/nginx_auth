@@ -3,7 +3,7 @@ import logging
 import os
 
 from flask import Flask, redirect, render_template, request, Response
-from flask_login import LoginManager, login_required, login_user, logout_user, UserMixin
+from flask_login import current_user, LoginManager, login_required, login_user, logout_user, UserMixin
 
 MSG_FORMAT = '%(asctime)s %(filename)s:%(lineno)d %(levelname)s %(message)s'
 logging.basicConfig(filename='/srv/logs/access.log', level=logging.DEBUG, format=MSG_FORMAT)
@@ -17,8 +17,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 class User(UserMixin):
-    def __init__(self, id=1):
-        self.id = id
+    id = 1
 
     def get_id(self) -> str:
         return str(self.id)
@@ -30,7 +29,10 @@ def load_user(_user_id):
 @app.route('/auth', methods=['GET'])
 @login_required
 def auth():
-    return Response(status=200)
+    response = Response(status=200)
+    response.headers['x-auth-user'] = current_user.id
+
+    return response
 
 @app.route('/auth/login', methods=['GET', 'POST'])
 def login():
