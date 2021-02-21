@@ -27,7 +27,7 @@ services:
       - app
       - auth
     ports:
-      - 9999:80
+      - 9090:9090
     volumes:
       - ./server/conf.d/:/etc/nginx/conf.d
       - ./logs/server:/var/log/nginx

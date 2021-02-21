@@ -14,6 +14,6 @@ This will stand up the following containers:
 
 Logs for each container are visible in `logs`. These are purged every time the compose stack is started.
 
-Once up and running, go to [http://localhost:9999](http://localhost:9999) — you should be redirected to a login form at `/auth/login`.
+Once up and running, go to [http://localhost:9090](http://localhost:9090) — you should be redirected to a login form at `/auth/login`.
 
 Then, just click "Login", there's no real concept of validation of user input at the moment because that's not the point of this exercise (but I'll probably add it soon anyway for completeness :wink:)
